@@ -6,41 +6,68 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.puzzle_agency.countriesapp.presentation.home.NavGraphs
+import com.puzzle_agency.countriesapp.presentation.navigation.NavigationManager
 import com.puzzle_agency.countriesapp.ui.theme.CountriesAppTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             CountriesAppTheme {
                 // A surface container using the 'background' color from the theme
+                val controller = rememberNavController()
+
+                LaunchedEffect(key1 = Unit) {
+                    initNavManager(controller)
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+
+                    DestinationsNavHost(
+                        navController = controller,
+                        navGraph = NavGraphs.root,
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun initNavManager(controller: NavHostController) {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CountriesAppTheme {
-        Greeting("Android")
+        navigationManager.setOnNavEvent {
+            val route = it.direction.route
+
+            if (it.popUpData != null) {
+                controller.navigate(route, builder = {
+                    popUpTo(it.popUpData.popupTo,
+                        popUpToBuilder = { inclusive = it.popUpData.inclusive })
+                })
+
+                return@setOnNavEvent
+            }
+
+            controller.navigate(route)
+        }
+
+        navigationManager.setOnBackEvent {
+            controller.navigateUp()
+        }
     }
 }
