@@ -11,9 +11,10 @@ data class CountryApiModel(
     val region: String?,
     val languages: Map<String, String>?,
     val borders: List<String>?,
-    val timeZones: List<String>?,
+    val timezones: List<String>?,
     val capital: List<String>?,
-    val coatOfArms: CoatOfArms?
+    val coatOfArms: CoatOfArms?,
+    val ccn3: String?
 )
 
 data class NameApiModel(
@@ -35,7 +36,7 @@ data class CoatOfArms(
 
 fun CountryApiModel.toDomainModel() : Country {
     return Country(
-        imageUrl = "https://www.planetware.com/wpimages/2019/09/croatia-in-pictures-most-beautiful-places-to-visit-vrbnik-town.jpg",
+        imageUrl = "https://a.cdn-hotels.com/gdcs/production55/d211/c6daccd0-06e0-4057-86d8-a88257d60db8.jpg",
         commonName = name?.common.orEmpty(),
         flagUrl = flags?.png.orEmpty(),
         capitalCityName = capital?.firstOrNull(),
@@ -44,9 +45,10 @@ fun CountryApiModel.toDomainModel() : Country {
         regionName = region.orEmpty(),
         languages = languages?.values.orEmpty().toList(),
         borderCountries = borders.orEmpty(),
-        timeZones = timeZones.orEmpty(),
+        timeZones = timezones.orEmpty(),
         mapsUrl = maps?.googleMaps,
         officialName = name?.official.orEmpty(),
-        coatOfArmsImageUrl = coatOfArms?.png
+        coatOfArmsImageUrl = coatOfArms?.png,
+        ccn3 = ccn3.orEmpty()
     )
 }

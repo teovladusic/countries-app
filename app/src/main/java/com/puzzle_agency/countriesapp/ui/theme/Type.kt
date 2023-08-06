@@ -51,6 +51,15 @@ val Typography.a4TextStyle: TextStyle
         fontWeight = FontWeight.Bold
     )
 
+val Typography.a4RegularTextStyle: TextStyle
+    get() = TextStyle(
+        fontFamily = InterFont,
+        fontSize = 24.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+        fontWeight = FontWeight.Normal
+    )
+
 val Typography.a3TextStyle: TextStyle
     get() = TextStyle(
         fontFamily = InterFont,

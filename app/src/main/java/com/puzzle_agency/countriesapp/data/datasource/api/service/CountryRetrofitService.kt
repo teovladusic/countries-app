@@ -11,4 +11,9 @@ interface CountryRetrofitService {
     suspend fun searchCountry(
         @Path("query") name: String
     ): ApiResult<List<CountryApiModel>>
+
+    @GET("alpha/{alpha}")
+    suspend fun getCountriesByAlpha(
+        @Path("alpha") alpha: String
+    ): ApiResult<List<CountryApiModel>>
 }
