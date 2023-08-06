@@ -1,2 +1,11 @@
 <resources>
+    <string name="greeting">Hi, Evolutio 👋</string>
+    <string name="header_title">Where do you want to be?</string>
+    <string name="search">Search</string>
+    <string name="alphabetically">Alphabetically</string>
+    <string name="population">Population</string>
+    <string name="area">Area</string>
+    <string name="error">Error</string>
+    <string name="error_appeared">Error appeared</string>
+    <string name="ok">OK</string>
 </resources>
