@@ -49,6 +49,11 @@ class HomeViewModel @Inject constructor(
         }
 
         job = viewModelScope.launch {
+            if (query.isBlank()) {
+                _homeViewState.update { it.copy(countries = emptyList(), loading = false) }
+                return@launch
+            }
+
             _homeViewState.update { it.copy(loading = true, countries = emptyList()) }
 
             when (val result = searchCountriesUseCase(query)) {
@@ -139,7 +144,7 @@ class HomeViewModel @Inject constructor(
 
     fun onCountryClick(country: Country) {
         navigationManager.navigate(
-            NavigationEvent(direction = CountryDetailsScreenDestination(country))
+            NavigationEvent(direction = CountryDetailsScreenDestination(country.ccn3))
         )
     }
 }

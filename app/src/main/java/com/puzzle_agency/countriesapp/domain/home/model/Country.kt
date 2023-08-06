@@ -17,5 +17,6 @@ data class Country(
     val timeZones: List<String>,
     val mapsUrl: String?,
     val officialName: String,
-    val coatOfArmsImageUrl: String?
+    val coatOfArmsImageUrl: String?,
+    val ccn3: String
 ): Parcelable

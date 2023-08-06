@@ -7,11 +7,11 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
-class SearchCountriesUseCase @Inject constructor(
+class GetCountryByAlphaUseCase @Inject constructor(
     private val countryRepository: CountryRepository
 ) {
 
-    suspend operator fun invoke(query: String): Result<List<Country>> {
-        return countryRepository.searchCountry(query)
+    suspend operator fun invoke(alpha: String): Result<Country> {
+        return countryRepository.getCountryByAlpha(alpha)
     }
 }
