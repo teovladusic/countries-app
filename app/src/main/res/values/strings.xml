@@ -1,2 +1,15 @@
 <resources>
+    <string name="greeting">Hi, Evolutio 👋</string>
+    <string name="header_title">Where do you want to be?</string>
+    <string name="search">Search</string>
+    <string name="alphabetically">Alphabetically</string>
+    <string name="population">Population</string>
+    <string name="area">Area</string>
+    <string name="error">Error</string>
+    <string name="error_appeared">Error appeared</string>
+    <string name="ok">OK</string>
+    <string name="official_languages">Official languages</string>
+    <string name="border_countries">Border countries</string>
+    <string name="time_zones">Time zones</string>
+    <string name="google_maps">Google maps</string>
 </resources>
