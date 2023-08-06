@@ -1,7 +1,7 @@
 package com.puzzle_agency.countriesapp.presentation.navigation
 
-import javax.inject.Singleton
 import com.ramcosta.composedestinations.spec.Direction
+import javax.inject.Singleton
 
 @Singleton
 class NavigationManager {
@@ -13,16 +13,6 @@ class NavigationManager {
 
     fun setOnNavEvent(navEventListener: (destination: NavigationEvent) -> Unit) {
         this.navEventListener = navEventListener
-    }
-
-    private var onBackClick: () -> Unit? = {}
-
-    fun navigateBack() {
-        onBackClick()
-    }
-
-    fun setOnBackEvent(onBackClick: () -> Unit) {
-        this.onBackClick = onBackClick
     }
 }
 

@@ -10,7 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.puzzle_agency.countriesapp.presentation.home.NavGraphs
+import com.puzzle_agency.countriesapp.presentation.NavGraphs
 import com.puzzle_agency.countriesapp.presentation.navigation.NavigationManager
 import com.puzzle_agency.countriesapp.ui.theme.CountriesAppTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
@@ -64,10 +64,6 @@ class MainActivity : ComponentActivity() {
             }
 
             controller.navigate(route)
-        }
-
-        navigationManager.setOnBackEvent {
-            controller.navigateUp()
         }
     }
 }
